@@ -7,52 +7,95 @@
 
 <style>
 body {
-    margin:0;
-    font-family: Arial, sans-serif;
-    background:#0f172a;
-    color:white;
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color:white;
+  scroll-behavior:smooth;
 }
+
+/* NAVBAR */
+nav {
+  display:flex;
+  justify-content:space-between;
+  padding:15px 40px;
+  background:#020617;
+  position:sticky;
+  top:0;
+}
+nav a {
+  color:#38bdf8;
+  text-decoration:none;
+  margin:0 10px;
+}
+
+/* HERO */
 header {
-    text-align:center;
-    padding:60px 20px;
+  text-align:center;
+  padding:80px 20px;
 }
 header h1 {
-    font-size:45px;
+  font-size:50px;
 }
 header p {
-    color:#38bdf8;
+  color:#38bdf8;
 }
 .btn {
-    padding:10px 20px;
-    background:#38bdf8;
-    color:black;
-    border-radius:5px;
-    text-decoration:none;
+  margin-top:20px;
+  display:inline-block;
+  padding:12px 25px;
+  background:#38bdf8;
+  color:black;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:bold;
 }
+
+/* SECTION */
 section {
-    padding:40px;
+  padding:60px 40px;
 }
 h2 {
-    color:#38bdf8;
+  color:#38bdf8;
 }
+
+/* CARDS */
 .container {
-    display:flex;
-    flex-wrap:wrap;
-    gap:20px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
 }
 .card {
-    background:#1e293b;
-    padding:20px;
-    border-radius:10px;
-    width:300px;
+  background:#1e293b;
+  padding:20px;
+  border-radius:12px;
+  width:300px;
+  transition:0.3s;
 }
+.card:hover {
+  transform:scale(1.05) rotate(1deg);
+  box-shadow:0 0 20px #38bdf8;
+}
+
+/* ANIMATION */
+.reveal {
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
+.reveal.active {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* FOOTER */
 footer {
-    text-align:center;
-    padding:20px;
-    background:#020617;
+  text-align:center;
+  padding:20px;
+  background:#020617;
 }
 a {
-    color:#38bdf8;
+  color:#38bdf8;
 }
 </style>
 
@@ -60,69 +103,62 @@ a {
 
 <body>
 
-<header>
+<nav>
+<div><b>Sourav</b></div>
+<div>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</div>
+</nav>
+
+<header class="reveal">
 <h1>Sourav Verma</h1>
 <p>BTech IT Student | Data Science & AI Enthusiast</p>
-<br>
-<a href="mailto:psycosourav@gmail.com" class="btn">Contact Me</a>
+<a href="mailto:psycosourav@gmail.com" class="btn">Hire Me</a>
 </header>
 
-<section>
+<section id="about" class="reveal">
 <h2>About Me</h2>
-<p>I am an aspiring Data Science and AI enthusiast with strong skills in Python, Data Analytics, and problem solving. I enjoy building data-driven solutions and continuously improving my knowledge in machine learning and AI.</p>
+<p>
+Aspiring Data Science and AI enthusiast with strong knowledge of Python, Data Analytics, and DSA.
+I enjoy solving real-world problems using data and continuously learning new technologies.
+</p>
 </section>
 
-<section>
+<section id="skills" class="reveal">
 <h2>Skills</h2>
 <div class="container">
-
-<div class="card">
-<h3>Programming</h3>
-<p>Python, SQL, MySQL</p>
-</div>
-
-<div class="card">
-<h3>Data & AI</h3>
-<p>Data Analysis, Machine Learning Basics, ETL</p>
-</div>
-
-<div class="card">
-<h3>Tools</h3>
-<p>Power BI, Excel, Streamlit, Git</p>
-</div>
-
+<div class="card"><h3>Programming</h3><p>Python, SQL, MySQL</p></div>
+<div class="card"><h3>Data</h3><p>Data Analysis, ETL, ML Basics</p></div>
+<div class="card"><h3>Tools</h3><p>Power BI, Excel, Git, Streamlit</p></div>
 </div>
 </section>
 
-<section>
+<section id="projects" class="reveal">
 <h2>Projects</h2>
 <div class="container">
 
 <div class="card">
 <h3>AI Chatbot</h3>
-<p>Built using BeautifulSoup and embeddings. Uses document chunking to answer data science queries.</p>
+<p>Built using BeautifulSoup and embeddings with document chunking.</p>
 </div>
 
 <div class="card">
-<h3>Data Analytics Dashboard</h3>
-<p>Created dashboards using Power BI to visualize data insights.</p>
+<h3>Power BI Dashboard</h3>
+<p>Created dashboards for data visualization and insights.</p>
 </div>
 
 <div class="card">
-<h3>Python ETL Project</h3>
-<p>Implemented data cleaning and transformation pipeline using Python.</p>
+<h3>Python ETL Pipeline</h3>
+<p>Performed data cleaning and transformation using Python.</p>
 </div>
 
 </div>
 </section>
 
-<section>
-<h2>Education</h2>
-<p>BTech (IT) - UIT Shimla (Pursuing)</p>
-<p>Diploma in IT - HP Board</p>
-</section>
-
-<section>
+<section id="contact" class="reveal">
 <h2>Contact</h2>
 <p>Email: psycosourav@gmail.com</p>
 <p>Phone: 7834003753</p>
@@ -132,6 +168,19 @@ a {
 <footer>
 <p>© 2026 Sourav Verma</p>
 </footer>
+
+<script>
+const elements = document.querySelectorAll('.reveal');
+
+window.addEventListener('scroll', () => {
+  elements.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100){
+      el.classList.add('active');
+    }
+  });
+});
+</script>
 
 </body>
 </html>
